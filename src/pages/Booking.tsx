@@ -45,7 +45,7 @@ export default function Booking() {
     return (sum % 10) === 0;
   };
 
-  // --- GESTIONE INPUT (Masking) ---
+  // --- GESTIONE INPUT ---
   
   const handleCardNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.replace(/\D/g, ''); // Solo numeri
@@ -78,13 +78,13 @@ export default function Booking() {
   // --- VALIDAZIONE FINALE ---
   
   const validatePayment = (): boolean => {
-    // 1. Controllo validità formale numero carta (Luhn)
+    // Controllo validità formale numero carta (Luhn)
     if (!isValidLuhn(paymentData.cardNumber)) {
       setError("Il numero della carta non è valido. Controlla di averlo scritto bene.");
       return false;
     }
 
-    // 2. Controllo Data Prenotazione (Non nel passato)
+    // Controllo Data Prenotazione (Non nel passato)
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const selectedDate = new Date(date);
@@ -93,7 +93,7 @@ export default function Booking() {
       return false;
     }
 
-    // 3. Controllo Scadenza
+    // Controllo Scadenza
     if (paymentData.expiry.length !== 5) {
       setError("Inserisci la scadenza completa (MM/YY).");
       return false;
@@ -115,7 +115,7 @@ export default function Booking() {
       return false;
     }
 
-    // 4. Controllo CVV
+    // Controllo CVV
     if (paymentData.cvv.length < 3) {
       setError("Il codice CVV deve essere di 3 cifre.");
       return false;
@@ -210,7 +210,7 @@ export default function Booking() {
             </div>
           )}
 
-          {/* 3. PAGAMENTO */}
+          {/* PAGAMENTO */}
           {selectedSlot && (
             <form onSubmit={handlePayment} className="animate-in fade-in slide-in-from-top-4 duration-500 pt-8 border-t border-dashed border-gray-200">
               
