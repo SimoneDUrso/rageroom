@@ -26,7 +26,7 @@ export default function Booking() {
   const [customerData, setCustomerData] = useState<CustomerData>({ fullName: '', email: '', phone: '', peopleCount: 1 });
   
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError]   = useState<string | null>(null);
 
   const availableSlots = [
     "09:00 - 09:30", "09:30 - 10:00", 
@@ -103,7 +103,7 @@ export default function Booking() {
       return false;
     }
     
-    if (customerData.phone.length < 6) {
+    if (customerData.phone.length < 10) {
       setError("Inserisci un numero di telefono valido.");
       return false;
     }
